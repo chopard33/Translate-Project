@@ -48,7 +48,7 @@ namespace KoreanAIO.Champions
             E.SetSourceFunction(() => MyHero);
             E.SetRangeCheckSourceFunction(() => MyHero);
             R = new SpellBase(SpellSlot.R, SpellType.Targeted, 625);
-            IsDeadText = new Text("Is Dead", new Font("Arial", 30F, FontStyle.Bold))
+            IsDeadText = new Text("接受死亡吧", new Font("Arial", 30F, FontStyle.Bold))
             {
                 Color = System.Drawing.Color.Red,
                 Position = new Vector2(100, 50)
@@ -178,33 +178,33 @@ namespace KoreanAIO.Champions
                 }
             };
 
-            MenuManager.AddSubMenu("Keys");
+            MenuManager.AddSubMenu("热键");
             {
                 Orbwalker.RegisterKeyBind(
-                    KeysMenu.Add("Combo2", new KeyBind("Combo without R", false, KeyBind.BindTypes.HoldActive, 'A')),
+                    KeysMenu.Add("Combo2", new KeyBind("不用R连招", false, KeyBind.BindTypes.HoldActive, 'A')),
                     Orbwalker.ActiveModes.Combo);
                 Orbwalker.RegisterKeyBind(
-                    KeysMenu.Add("Harass2", new KeyBind("Harass 2", false, KeyBind.BindTypes.HoldActive, 'S')),
+                    KeysMenu.Add("Harass2", new KeyBind("骚扰 2", false, KeyBind.BindTypes.HoldActive, 'S')),
                     Orbwalker.ActiveModes.Harass);
             }
 
             Q.AddConfigurableHitChancePercent();
 
-            MenuManager.AddSubMenu("Combo");
+            MenuManager.AddSubMenu("连招");
             {
-                ComboMenu.AddStringList("Mode", "R Mode", new[] { "Line", "Triangle", "MousePos" });
-                ComboMenu.Add("Q", new CheckBox("Use Q"));
-                ComboMenu.Add("W", new CheckBox("Use W"));
-                ComboMenu.Add("E", new CheckBox("Use E"));
-                ComboMenu.Add("R", new CheckBox("Use R"));
-                ComboMenu.Add("Items", new CheckBox("Use Items"));
-                ComboMenu.Add("SwapDead", new CheckBox("Use W2/R2 if target will die"));
-                ComboMenu.Add("SwapGapclose", new CheckBox("Use W2/R2 to get close to target"));
-                ComboMenu.Add("SwapHP", new Slider("Use W2/R2 if my HealthPercent is <= {0}", 15));
-                ComboMenu.Add("Prevent", new CheckBox("Don't use spells before R"));
+                ComboMenu.AddStringList("Mode", "R 模式", new[] { "线性", "三角", "鼠标位置" });
+                ComboMenu.Add("Q", new CheckBox("使用 Q"));
+                ComboMenu.Add("W", new CheckBox("使用 W"));
+                ComboMenu.Add("E", new CheckBox("使用 E"));
+                ComboMenu.Add("R", new CheckBox("使用 R"));
+                ComboMenu.Add("Items", new CheckBox("使用物品"));
+                ComboMenu.Add("SwapDead", new CheckBox("使用 W2/R2 如果可击杀敌人"));
+                ComboMenu.Add("SwapGapclose", new CheckBox("使用 W2/R2 接近目标"));
+                ComboMenu.Add("SwapHP", new Slider("使用 W2/R2 如果生命 <= {0}", 15));
+                ComboMenu.Add("Prevent", new CheckBox("R之前不使用技能"));
                 if (EntityManager.Heroes.Enemies.Count > 0)
                 {
-                    ComboMenu.AddGroupLabel("Don't use R on");
+                    ComboMenu.AddGroupLabel("对敌人不使用R");
                     var enemiesAdded = new HashSet<string>();
                     foreach (var enemy in EntityManager.Heroes.Enemies)
                     {
@@ -216,63 +216,63 @@ namespace KoreanAIO.Champions
                     }
                 }
             }
-            MenuManager.AddSubMenu("Harass");
+            MenuManager.AddSubMenu("骚扰");
             {
-                HarassMenu.Add("Collision", new CheckBox("Add collision check for Q (more damage)", false));
-                HarassMenu.Add("SwapGapclose", new CheckBox("Use W2 if target is killable"));
-                HarassMenu.AddGroupLabel("Harass 1");
-                HarassMenu.Add("Harass1.Q", new CheckBox("Use Q"));
-                HarassMenu.Add("Harass1.W", new CheckBox("Use W", false));
-                HarassMenu.Add("Harass1.E", new CheckBox("Use E"));
-                HarassMenu.Add("Harass1.ManaPercent", new Slider("Min. Energy Percent:", 20));
-                HarassMenu.AddGroupLabel("Harass 2");
-                HarassMenu.Add("Harass2.Q", new CheckBox("Use Q"));
-                HarassMenu.Add("Harass2.W", new CheckBox("Use W"));
-                HarassMenu.Add("Harass2.E", new CheckBox("Use E"));
+                HarassMenu.Add("Collision", new CheckBox("为Q检查施法路径 （更多伤害）", false));
+                HarassMenu.Add("SwapGapclose", new CheckBox("使用W2如果可击杀"));
+                HarassMenu.AddGroupLabel("骚扰 1");
+                HarassMenu.Add("Harass1.Q", new CheckBox("使用 Q"));
+                HarassMenu.Add("Harass1.W", new CheckBox("使用 W", false));
+                HarassMenu.Add("Harass1.E", new CheckBox("使用 E"));
+                HarassMenu.Add("Harass1.ManaPercent", new Slider("最低能量使用:", 20));
+                HarassMenu.AddGroupLabel("骚扰 2");
+                HarassMenu.Add("Harass2.Q", new CheckBox("使用 Q"));
+                HarassMenu.Add("Harass2.W", new CheckBox("使用 W"));
+                HarassMenu.Add("Harass2.E", new CheckBox("使用 E"));
             }
 
-            MenuManager.AddSubMenu("Clear");
+            MenuManager.AddSubMenu("清线");
             {
-                ClearMenu.AddGroupLabel("LaneClear");
+                ClearMenu.AddGroupLabel("清线");
                 {
-                    ClearMenu.Add("LaneClear.Q", new Slider("Use Q if hit >= {0}", 3, 0, 10));
-                    ClearMenu.Add("LaneClear.W", new Slider("Use W if hit >= {0}", 4, 0, 10));
-                    ClearMenu.Add("LaneClear.E", new Slider("Use E if hit >= {0}", 3, 0, 10));
-                    ClearMenu.Add("LaneClear.ManaPercent", new Slider("Min. ManaPercent", 50));
+                    ClearMenu.Add("LaneClear.Q", new Slider("使用Q如果命中敌人数量 >= {0}", 3, 0, 10));
+                    ClearMenu.Add("LaneClear.W", new Slider("使用W如果命中敌人数量 >= {0}", 4, 0, 10));
+                    ClearMenu.Add("LaneClear.E", new Slider("使用E如果命中敌人数量 >= {0}", 3, 0, 10));
+                    ClearMenu.Add("LaneClear.ManaPercent", new Slider("最低能量使用", 50));
                 }
-                ClearMenu.AddGroupLabel("LastHit");
+                ClearMenu.AddGroupLabel("尾兵");
                 {
-                    ClearMenu.AddStringList("LastHit.Q", "Use Q", new[] { "None", "Smart", "Always" }, 1);
-                    ClearMenu.AddStringList("LastHit.E", "Use E", new[] { "None", "Smart", "Always" }, 1);
-                    ClearMenu.Add("LastHit.ManaPercent", new Slider("Min. ManaPercent", 50));
+                    ClearMenu.AddStringList("LastHit.Q", "使用 Q", new[] { "从不", "中毒的", "一直" }, 1);
+                    ClearMenu.AddStringList("LastHit.E", "使用 E", new[] { "从不", "中毒的", "一直" }, 1);
+                    ClearMenu.Add("LastHit.ManaPercent", new Slider("最低能量使用", 50));
                 }
-                ClearMenu.AddGroupLabel("JungleClear");
+                ClearMenu.AddGroupLabel("清野");
                 {
-                    ClearMenu.Add("JungleClear.Q", new CheckBox("Use Q"));
-                    ClearMenu.Add("JungleClear.W", new CheckBox("Use W"));
-                    ClearMenu.Add("JungleClear.E", new CheckBox("Use W"));
-                    ClearMenu.Add("JungleClear.ManaPercent", new Slider("Min. ManaPercent", 20));
+                    ClearMenu.Add("JungleClear.Q", new CheckBox("使用 Q"));
+                    ClearMenu.Add("JungleClear.W", new CheckBox("使用 W"));
+                    ClearMenu.Add("JungleClear.E", new CheckBox("使用 W"));
+                    ClearMenu.Add("JungleClear.ManaPercent", new Slider("最低能量使用", 20));
                 }
             }
 
             MenuManager.AddKillStealMenu();
             {
-                KillStealMenu.Add("Q", new CheckBox("Use Q"));
-                KillStealMenu.Add("W", new CheckBox("Use W"));
-                KillStealMenu.Add("E", new CheckBox("Use E"));
+                KillStealMenu.Add("Q", new CheckBox("使用 Q"));
+                KillStealMenu.Add("W", new CheckBox("使用 W"));
+                KillStealMenu.Add("E", new CheckBox("使用 E"));
             }
 
-            MenuManager.AddSubMenu("Automatic");
+            MenuManager.AddSubMenu("自动");
             {
-                AutomaticMenu.Add("E", new CheckBox("Use auto E", false));
-                AutomaticMenu.Add("SwapDead", new CheckBox("Use W2/R2 if target will die", false));
+                AutomaticMenu.Add("E", new CheckBox("自动使用 E", false));
+                AutomaticMenu.Add("SwapDead", new CheckBox("自动使用 W2/R2 如果目标能击杀", false));
             }
             MenuManager.AddSubMenu("Evader");
             {
-                EvaderMenu.Add("Evader.W1", new CheckBox("Use W1", false));
-                EvaderMenu.Add("Evader.W2", new CheckBox("Use W2"));
-                EvaderMenu.Add("Evader.R1", new CheckBox("Use R1"));
-                EvaderMenu.Add("Evader.R2", new CheckBox("Use R2"));
+                EvaderMenu.Add("Evader.W1", new CheckBox("使用 W1", false));
+                EvaderMenu.Add("Evader.W2", new CheckBox("使用 W2"));
+                EvaderMenu.Add("Evader.R1", new CheckBox("使用 R1"));
+                EvaderMenu.Add("Evader.R2", new CheckBox("使用 R2"));
             }
             Evader.Initialize();
             Evader.AddCrowdControlSpells();
@@ -284,18 +284,18 @@ namespace KoreanAIO.Champions
                 E.AddDrawings(false);
                 R.AddDrawings();
                 CircleManager.Circles.Add(new Circle(
-                    DrawingsMenu.Add("W.Shadow", new CheckBox("Draw W shadow circle")), SharpDX.Color.Blue,
+                    DrawingsMenu.Add("W.Shadow", new CheckBox("显示W线圈范围")), SharpDX.Color.Blue,
                     () => 100, () => WShadowIsValid,
                     () => WShadow)
                 { Width = 1 });
 
                 CircleManager.Circles.Add(new Circle(
-                    DrawingsMenu.Add("R.Shadow", new CheckBox("Draw R shadow circle")), SharpDX.Color.Orange,
+                    DrawingsMenu.Add("R.Shadow", new CheckBox("显示R线圈范围")), SharpDX.Color.Orange,
                     () => 100, () => RShadowIsValid,
                     () => RShadow)
                 { Width = 1 });
-                DrawingsMenu.Add("IsDead", new CheckBox("Draw text if target will die"));
-                DrawingsMenu.Add("Passive", new CheckBox("Draw text when passive is ready"));
+                DrawingsMenu.Add("IsDead", new CheckBox("显示目标可击杀提示"));
+                DrawingsMenu.Add("Passive", new CheckBox("显示主动技能冷却提示"));
             }
 
         }
@@ -349,7 +349,7 @@ namespace KoreanAIO.Champions
                     var enemyDead = UnitManager.ValidEnemyHeroes.FirstOrDefault(IsDead);
                     if (enemyDead != null)
                     {
-                        IsDeadText.TextValue = enemyDead.ChampionName + " is dead";
+                        IsDeadText.TextValue = enemyDead.ChampionName + " 接受死亡吧";
                         IsDeadText.Draw();
                     }
                 }
@@ -366,7 +366,7 @@ namespace KoreanAIO.Champions
                         UnitManager.ValidEnemyHeroes.Where(
                             h => h.HealthPercent <= 50f && h.VisibleOnScreen && !h.TargetHaveBuff("zedpassivecd")))
                 {
-                    Drawing.DrawText(enemy.ServerPosition.WorldToScreen(), System.Drawing.Color.White, "Passive Ready",
+                    Drawing.DrawText(enemy.ServerPosition.WorldToScreen(), System.Drawing.Color.White, "主动技能就绪",
                         6);
                 }
             }

@@ -107,57 +107,57 @@ namespace KoreanAIO.Champions
                 }
             };
             Q.AddConfigurableHitChancePercent();
-            MenuManager.AddSubMenu("Combo");
+            MenuManager.AddSubMenu("连招");
             {
-                ComboMenu.Add("Q", new CheckBox("Use Q"));
-                ComboMenu.Add("W", new CheckBox("Use W"));
-                ComboMenu.Add("QR", new CheckBox("Use QR on minion to gapclose"));
-                ComboMenu.Add("Ignite", new CheckBox("Use Ignite if killable", false));
-                ComboMenu.AddStringList("E", "Use E", new[] { "Never", "Smart", "Always" }, 1);
-                ComboMenu.AddStringList("R", "Use R", new[] { "Never", "Smart", "Always" }, 1);
+                ComboMenu.Add("Q", new CheckBox("使用 Q"));
+                ComboMenu.Add("W", new CheckBox("使用 W"));
+                ComboMenu.Add("QR", new CheckBox("在小兵上使用QR进行间距"));
+                ComboMenu.Add("Ignite", new CheckBox("使用点燃如果可击杀", false));
+                ComboMenu.AddStringList("E", "使用 E", new[] { "从不", "智能", "一直" }, 1);
+                ComboMenu.AddStringList("R", "使用 R", new[] { "从不", "智能", "一直" }, 1);
             }
 
-            MenuManager.AddSubMenu("Harass");
+            MenuManager.AddSubMenu("骚扰");
             {
-                HarassMenu.Add("Q", new CheckBox("Use Q"));
-                HarassMenu.Add("W", new CheckBox("Use W"));
-                HarassMenu.Add("E", new CheckBox("Use E", false));
-                HarassMenu.Add("ManaPercent", new Slider("Min. ManaPercent", 25));
+                HarassMenu.Add("Q", new CheckBox("使用 Q"));
+                HarassMenu.Add("W", new CheckBox("使用 W"));
+                HarassMenu.Add("E", new CheckBox("使用 E", false));
+                HarassMenu.Add("ManaPercent", new Slider("最低蓝量使用", 25));
             }
 
-            MenuManager.AddSubMenu("Clear");
+            MenuManager.AddSubMenu("清线");
             {
-                ClearMenu.AddGroupLabel("LaneClear");
+                ClearMenu.AddGroupLabel("清线");
                 {
-                    ClearMenu.Add("LaneClear.Q", new Slider("Use Q if hit >= {0}", 4, 0, 10));
-                    ClearMenu.Add("LaneClear.W", new Slider("Use W if hit >= {0}", 3, 0, 10));
-                    ClearMenu.Add("LaneClear.ManaPercent", new Slider("Min. ManaPercent", 50));
+                    ClearMenu.Add("LaneClear.Q", new Slider("使用Q清线如果能命中 >= {0}", 4, 0, 10));
+                    ClearMenu.Add("LaneClear.W", new Slider("使用W清线如果能命中 >= {0}", 3, 0, 10));
+                    ClearMenu.Add("LaneClear.ManaPercent", new Slider("最低蓝量使用", 50));
                 }
-                ClearMenu.AddGroupLabel("LastHit");
+                ClearMenu.AddGroupLabel("尾兵");
                 {
-                    ClearMenu.AddStringList("LastHit.Q", "Use Q", new[] { "None", "Smart", "Always" }, 1);
-                    ClearMenu.Add("LastHit.ManaPercent", new Slider("Min. ManaPercent", 50));
+                    ClearMenu.AddStringList("LastHit.Q", "使用 Q", new[] { "从不", "智能", "一直" }, 1);
+                    ClearMenu.Add("LastHit.ManaPercent", new Slider("最低蓝量使用", 50));
                 }
-                ClearMenu.AddGroupLabel("JungleClear");
+                ClearMenu.AddGroupLabel("清野");
                 {
-                    ClearMenu.Add("JungleClear.Q", new CheckBox("Use Q"));
-                    ClearMenu.Add("JungleClear.W", new CheckBox("Use W"));
-                    ClearMenu.Add("JungleClear.R", new CheckBox("Use R"));
-                    ClearMenu.Add("JungleClear.ManaPercent", new Slider("Min. ManaPercent", 20));
+                    ClearMenu.Add("JungleClear.Q", new CheckBox("使用 Q"));
+                    ClearMenu.Add("JungleClear.W", new CheckBox("使用 W"));
+                    ClearMenu.Add("JungleClear.R", new CheckBox("使用 R"));
+                    ClearMenu.Add("JungleClear.ManaPercent", new Slider("最低蓝量使用", 20));
                 }
             }
 
             MenuManager.AddKillStealMenu();
             {
-                KillStealMenu.Add("Q", new CheckBox("Use Q"));
-                KillStealMenu.Add("W", new CheckBox("Use W"));
-                KillStealMenu.Add("R", new CheckBox("Use R"));
+                KillStealMenu.Add("Q", new CheckBox("使用 Q"));
+                KillStealMenu.Add("W", new CheckBox("使用 W"));
+                KillStealMenu.Add("R", new CheckBox("使用 R"));
             }
 
-            MenuManager.AddSubMenu("Automatic");
+            MenuManager.AddSubMenu("自动");
             {
-                AutomaticMenu.Add("Gapcloser", new CheckBox("Use E on enemy dashing"));
-                AutomaticMenu.Add("Interrupter", new CheckBox("Use E to interrupt enemy spell"));
+                AutomaticMenu.Add("Gapcloser", new CheckBox("敌人切入时使用E"));
+                AutomaticMenu.Add("Interrupter", new CheckBox("使用E打断敌人技能"));
             }
             MenuManager.AddDrawingsMenu();
             {
