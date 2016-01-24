@@ -74,18 +74,16 @@ namespace KoreanAIO.Champions
                 var minion = sender as Obj_AI_Minion;
                 if (minion != null && minion.IsAlly && minion.BaseSkinName == ShadowSkinName)
                 {
-                    switch (args.Animation)
+                    if (args.Animation == "Death")
                     {
-                        case "Death":
-                            if (WShadow.IdEquals(minion))
-                            {
-                                WShadow = null;
-                            }
-                            else if (RShadow.IdEquals(minion))
-                            {
-                                RShadow = null;
-                            }
-                            break;
+                        if (WShadow.IdEquals(minion))
+                        {
+                            WShadow = null;
+                        }
+                        else if (RShadow.IdEquals(minion))
+                        {
+                            RShadow = null;
+                        }
                     }
                 }
             };
