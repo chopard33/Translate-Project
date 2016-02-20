@@ -43,6 +43,7 @@ namespace KKayle
             return Player.Spells.FirstOrDefault(o => o.SData.Name.Contains(s)) != null;
         }
 
+        public static bool OnDamage = false;
 
 
         static void Main(string[] args)
@@ -51,6 +52,7 @@ namespace KKayle
             Drawing.OnDraw += Game_OnDraw;
             Game.OnUpdate += Game_OnUpdate;
             Game.OnTick += Game_OnTick;
+            Obj_AI_Base.OnProcessSpellCast += DamageC;
 
         }
 
@@ -72,6 +74,7 @@ namespace KKayle
 
                 Chat.Print("KKayle Addon Loading Success");
                 Q = new Spell.Targeted(SpellSlot.Q, 650);
+                    Q.CastDelay = 5;
                 W = new Spell.Targeted(SpellSlot.W, 900);
                 E = new Spell.Active(SpellSlot.E);
                 R = new Spell.Targeted(SpellSlot.R, 900);
@@ -228,6 +231,11 @@ namespace KKayle
                 ModeManager.LastHit();
 
             }
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Flee))
+            {
+                ModeManager.Flee();
+
+            }
 
 
             }
@@ -240,8 +248,31 @@ namespace KKayle
 
 
         }
+       
+
+        public static void DamageC(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        
+        {
+            if (_Player.IsRecalling()) return;
+            var target = args.Target as Obj_AI_Base;
+            if (!target.IsAlly || sender.IsAlly || target == null)
+            {
+
+                return;
+            }
+            if (sender.IsEnemy && target.IsAlly && !target.IsMinion)
+            {
+                OnDamage = true;
+
+            }
+
+            if (target.IsUnderTurret())
+            {
+                OnDamage = true;
+            }
+
+        }
 
         }
 
     }
-

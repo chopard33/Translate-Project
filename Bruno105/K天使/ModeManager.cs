@@ -120,7 +120,7 @@ namespace KKayle
 
             var Q = Program.Q;
             var E = Program.E;
-            var qminions = EntityManager.MinionsAndMonsters.EnemyMinions.FirstOrDefault(m => m.IsValidTarget(Program.Q.Range) && (DamageLib.QCalc(m) > m.Health));
+            var qminions = EntityManager.MinionsAndMonsters.EnemyMinions.FirstOrDefault(m => m.IsValidTarget(Program.Q.Range));
             var eminions = EntityManager.MinionsAndMonsters.EnemyMinions.FirstOrDefault(m => m.IsValidTarget(Program.Q.Range) && (DamageLib.ECalc(m) > m.Health + 50));
             if (qminions == null) return;
 
@@ -130,6 +130,24 @@ namespace KKayle
           //  if (E.IsReady() && Program.Q.IsInRange(eminions) && Program.FarmMenu["LastE"].Cast<CheckBox>().CurrentValue && (eminions.Health + 150) < DamageLib.ECalc(eminions))
 
             //    E.Cast();
+        }
+        public static void Flee()
+        {
+
+            var Q = Program.Q;
+            var W = Program.W;
+            var alvo = TargetSelector.GetTarget(Q.Range, DamageType.Magical);
+            if (Q.IsReady() && Q.IsInRange(alvo))
+            {
+                Q.Cast(alvo);
+
+            }
+            if (W.IsReady())
+            {
+                W.Cast(Player.Instance);
+
+            }
+      
         }
              public static void AutoHeal()
              {
@@ -167,6 +185,7 @@ namespace KKayle
           }
             public static void AutoUlt()
              {
+                
                  var Q = Program.Q;
                  var W = Program.W;
                  var E = Program.E;
@@ -175,7 +194,8 @@ namespace KKayle
                  {
                      return;
                  }
-
+                
+               //  if (Program.OnDamage == false) return;
                  var lowestHealthAllies = EntityManager.Heroes.Allies.Where(a => R.IsInRange(a) && !a.IsMe).OrderBy(a => a.Health).FirstOrDefault();
 
                  if (Player.Instance.HealthPercent <= Program.UltMenu["UltSelf"].Cast<Slider>().CurrentValue)
@@ -187,6 +207,7 @@ namespace KKayle
                  {
                      return;
                  }
+                 
 
                  if (!(lowestHealthAllies.Health <= Program.UltMenu["UltAlly"].Cast<Slider>().CurrentValue))
                  {
@@ -208,4 +229,3 @@ namespace KKayle
 
 
         
-
