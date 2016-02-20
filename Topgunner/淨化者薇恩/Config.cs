@@ -21,6 +21,8 @@ namespace PurifierVayne
             // Initialize the menu
             Menu = MainMenu.AddMenu(MenuName, MenuName.ToLower());
             Menu.AddGroupLabel("欢迎使用淨化者薇恩 by TopGunner 由CH汉化");
+            Menu.AddGroupLabel("挂机的话请不要勾开局买装备以及逃跑Q/任何Q至鼠标的功能");
+
 
             // Initialize the modes
             Misc.Initialize();
@@ -95,18 +97,18 @@ namespace PurifierVayne
             {
                 Menu = Config.Menu.AddSubMenu("Q 设置");
                 Menu.AddSeparator();
-                _useQToMouse = Menu.Add("Q至鼠标位置", new CheckBox("Q至鼠标位置e", false));
-                _gapcloserQ = Menu.Add("使用Q造成间距", new CheckBox("使用Q造成间距"));
-                _fleeQ = Menu.Add("逃跑Q", new CheckBox("逃跑Q (至鼠标位置)"));
-                _unkillableMinion = Menu.Add("Q尾兵", new CheckBox("普攻无法杀死小兵时使用Q尾兵"));
+                _useQToMouse = Menu.Add("useQToMouse", new CheckBox("Q至鼠标位置", false));
+                _gapcloserQ = Menu.Add("gapcloserQ", new CheckBox("使用Q造成间距"));
+                _fleeQ = Menu.Add("fleeQ", new CheckBox("逃跑Q (至鼠标位置)"));
+                _unkillableMinion = Menu.Add("unkillableMinion", new CheckBox("普攻无法杀死小兵时使用Q尾兵"));
                 Menu.AddSeparator();
-                _useQToMouseCombo = Menu.Add("连招Q至鼠标位置", new CheckBox("连招Q至鼠标位置", false));
-                _useQToMouseHarass = Menu.Add("骚扰Q至鼠标位置", new CheckBox("骚扰Q至鼠标位置", false));
-                _useQToMouseLaneClear = Menu.Add("清线Q至鼠标位置", new CheckBox("清线Q至鼠标位置", false));
-                _useQToMouseLastHit = Menu.Add("尾兵Q至鼠标位置", new CheckBox("尾兵Q至鼠标位置", false));
+                _useQToMouseCombo = Menu.Add("useQToMouseCombo", new CheckBox("连招Q至鼠标位置", false));
+                _useQToMouseHarass = Menu.Add("useQToMouseHarass", new CheckBox("骚扰Q至鼠标位置", false));
+                _useQToMouseLaneClear = Menu.Add("useQToMouseLaneClear", new CheckBox("清线Q至鼠标位置", false));
+                _useQToMouseLastHit = Menu.Add("useQToMouselastHit", new CheckBox("尾兵Q至鼠标位置", false));
                 Menu.AddSeparator();
-                _defQ = Menu.Add("防守型Q", new Slider("防守型 Q 当 ({0}) 个敌人多余友军", 1, 0, 4));
-                _lowHPQ = Menu.Add("低血量Q", new Slider("低血量 Q 当自身血量少于 ({0}%) ", 10, 1, 100));
+                _defQ = Menu.Add("defQ", new Slider("防守型 Q 当 ({0}) 个敌人多于友军", 1, 0, 4));
+                _lowHPQ = Menu.Add("lowHPQ", new Slider("低血量 Q 当自身血量少于 ({0}%)", 10, 1, 100));
             }
 
             public static void Initialize()
@@ -154,22 +156,22 @@ namespace PurifierVayne
             }
             public static bool condemnAfterNextAA
             {
-                get { return Menu["连招热键"].Cast<KeyBind>().CurrentValue; }
+                get { return Menu["CondemnHotkey"].Cast<KeyBind>().CurrentValue; }
             }
             static ESettings()
             {
                 Menu = Config.Menu.AddSubMenu("E 设置");
                 Menu.AddGroupLabel("骚扰");
-                _harassEProcW = Menu.Add("骚扰W", new CheckBox("尝试叠加W骚扰", false));
-                _harassPinToWall = Menu.Add("骚扰定墙", new CheckBox("骚扰定墙l"));
+                _harassEProcW = Menu.Add("harassEProcW", new CheckBox("尝试叠加W骚扰", false));
+                _harassPinToWall = Menu.Add("harassPinToWall", new CheckBox("骚扰定墙"));
                 Menu.AddGroupLabel("连招");
-                _comboEProcW = Menu.Add("连招W", new CheckBox("尝试叠加W连招", false));
-                _comboPinToWall = Menu.Add("连招定墙", new CheckBox("连招定墙"));
-                Menu.AddGroupLabel("其他");
-                _interruptE = Menu.Add("E技能打断", new CheckBox("E技能打断"));
-                _ksE = Menu.Add("E抢人头", new CheckBox("E抢人头", false));
-                _useEOnGapcloser = Menu.Add("使用QE造成间距", new CheckBox("使用QE造成间距", false));
-                Menu.Add("连招热键", new KeyBind("下一个AA后使用E", false, KeyBind.BindTypes.HoldActive, 'Y'));
+                _comboEProcW = Menu.Add("comboEProcW", new CheckBox("尝试叠加W连招", false));
+                _comboPinToWall = Menu.Add("comboPinToWall", new CheckBox("连招定墙"));
+                Menu.AddGroupLabel("杂项");
+                _interruptE = Menu.Add("interruptE", new CheckBox("使用E技能打断"));
+                _ksE = Menu.Add("ksE", new CheckBox("E抢人头", false));
+                _useEOnGapcloser = Menu.Add("useEOnGapcloser", new CheckBox("使用Q+E造成间距", false));
+                Menu.Add("CondemnHotkey", new KeyBind("下一个AA后使用E", false, KeyBind.BindTypes.HoldActive, 'Y'));
             }
 
             public static void Initialize()
@@ -245,24 +247,24 @@ namespace PurifierVayne
             {
                 // Initialize the menu values
                 Menu = Config.Menu.AddSubMenu("杂项");
-                _drawQ = Menu.Add("Q线圈", new CheckBox("Q线圈"));
-                _drawE = Menu.Add("E线圈", new CheckBox("E线圈"));
-                _drawReady = Menu.Add("可使用技能线圈", new CheckBox("技能CD结束后显示线圈"));
+                _drawQ = Menu.Add("drawQ", new CheckBox("显示 Q"));
+                _drawE = Menu.Add("drawE", new CheckBox("显示 E"));
+                _drawReady = Menu.Add("drawReady", new CheckBox("显示无冷却技能线圈"));
                 Menu.AddSeparator();
-                _useHeal = Menu.Add("使用治疗", new CheckBox("使用治疗"));
-                _useQSS = Menu.Add("使用净化", new CheckBox("使用净化"));
+                _useHeal = Menu.Add("useHeal", new CheckBox("使用治疗"));
+                _useQSS = Menu.Add("useQSS", new CheckBox("使用水银"));
                 Menu.AddSeparator();
                 for (int i = 0; i < EntityManager.Heroes.Allies.Count; i++)
                 {
-                    _useHealOn[i] = Menu.Add("使用治疗" + i, new CheckBox("对友军使用治疗 " + EntityManager.Heroes.Allies[i].ChampionName));
+                    _useHealOn[i] = Menu.Add("useHeal" + i, new CheckBox("对友军使用治疗 " + EntityManager.Heroes.Allies[i].ChampionName));
                 }
                 Menu.AddSeparator();
-                _useQOnGapcloser = Menu.Add("使用Q造成间距", new CheckBox("使用Q造成间距", false));
+                _useQOnGapcloser = Menu.Add("useQOnGapcloser", new CheckBox("使用Q造成间距", false));
                 Menu.AddSeparator();
-                _autolevelskills = Menu.Add("自动加点", new CheckBox("自动加点"));
-                _autoBuyStartingItems = Menu.Add("开局自动买物品", new CheckBox("开局自动买物品 (召唤师峡谷)", false));
+                _autolevelskills = Menu.Add("autolevelskills", new CheckBox("自动加点"));
+                _autoBuyStartingItems = Menu.Add("autoBuyStartingItems", new CheckBox("开局自动买物品 (召唤师峡谷)", false));
                 Menu.AddSeparator();
-                _useSkinHack = Menu.Add("换肤", new CheckBox("换肤", false));
+                _useSkinHack = Menu.Add("useSkinHack", new CheckBox("换肤", false));
                 _skinId = Menu.Add("skinId", new Slider("Skin ID", 6, 1, 10));
             }
 
@@ -345,14 +347,14 @@ namespace PurifierVayne
                 {
                     // Initialize the menu values
                     Menu.AddGroupLabel("连招");
-                    _useQ = Menu.Add("连招Q", new CheckBox("连招Q"));
-                    _useE = Menu.Add("连招E", new CheckBox("连招E"));
-                    _useR = Menu.Add("连招R", new CheckBox("连招R"));
-                    _useREnemies = Menu.Add("使用R", new Slider("连招使用R当附近有 x 敌人", 2, 1, 5));
-                    _useBOTRK = Menu.Add("使用破败", new CheckBox("使用破败（智能）和小破败"));
-                    _useYOUMOUS = Menu.Add("使用幽梦", new CheckBox("使用幽梦"));
-                    _useWardVision = Menu.Add("插眼视野", new CheckBox("插眼视野"));
-                    _useTrinketVision = Menu.Add("饰品视野", new CheckBox("使用饰品视野"));
+                    _useQ = Menu.Add("comboUseQ", new CheckBox("使用 Q"));
+                    _useE = Menu.Add("comboUseE", new CheckBox("使用 E"));
+                    _useR = Menu.Add("comboUseR", new CheckBox("使用 R"));
+                    _useREnemies = Menu.Add("useREnemies", new Slider("附近有 X名敌人连招使用R", 2, 1, 5));
+                    _useBOTRK = Menu.Add("useBotrk", new CheckBox("使用破败（智能）和小破败"));
+                    _useYOUMOUS = Menu.Add("useYoumous", new CheckBox("使用幽梦"));
+                    _useWardVision = Menu.Add("useWardVision", new CheckBox("插眼视野"));
+                    _useTrinketVision = Menu.Add("useTrinketVision", new CheckBox("使用饰品视野"));
                 }
 
                 public static void Initialize()
@@ -364,28 +366,28 @@ namespace PurifierVayne
             {
                 public static bool UseQ
                 {
-                    get { return Menu["骚扰Q"].Cast<CheckBox>().CurrentValue; }
+                    get { return Menu["harassUseQ"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static bool UseE
                 {
-                    get { return Menu["骚扰E"].Cast<CheckBox>().CurrentValue; }
+                    get { return Menu["harassUseE"].Cast<CheckBox>().CurrentValue; }
                 }
                 public static int Mana
                 {
-                    get { return Menu["骚扰蓝量"].Cast<Slider>().CurrentValue; }
+                    get { return Menu["harassMana"].Cast<Slider>().CurrentValue; }
                 }
 
                 static Harass()
                 {
                     // Here is another option on how to use the menu, but I prefer the
                     // way that I used in the combo class
-                    Menu.AddGroupLabel("Harass");
-                    Menu.Add("骚扰Q", new CheckBox("骚扰Q"));
-                    Menu.Add("骚扰E", new CheckBox("骚扰E"));
+                    Menu.AddGroupLabel("骚扰");
+                    Menu.Add("harassUseQ", new CheckBox("使用 Q"));
+                    Menu.Add("harassUseE", new CheckBox("使用 E"));
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
-                    Menu.Add("骚扰蓝量", new Slider("最大蓝量使用 ({0}%)", 40));
+                    Menu.Add("harassMana", new Slider("最大蓝量使用百分比 ({0}%)", 40));
                 }
                 public static void Initialize()
                 {
@@ -410,8 +412,8 @@ namespace PurifierVayne
                 {
                     // Initialize the menu values
                     Menu.AddGroupLabel("清线");
-                    _useQ = Menu.Add("清线Q", new CheckBox("清线Q"));
-                    _mana = Menu.Add("清线蓝量", new Slider("最大蓝量使用 ({0}%)", 40));
+                    _useQ = Menu.Add("clearUseQ", new CheckBox("使用 Q"));
+                    _mana = Menu.Add("clearMana", new Slider("最大蓝量使用百分比 ({0}%)", 40));
                 }
 
                 public static void Initialize()
@@ -442,9 +444,9 @@ namespace PurifierVayne
                 {
                     // Initialize the menu values
                     Menu.AddGroupLabel("清野");
-                    _useQ = Menu.Add("清野Q", new CheckBox("清野Q"));
-                    _mana = Menu.Add("清野蓝量", new Slider("最大蓝量使用 ({0}%)", 40));
-                    _useE = Menu.Add("清野E", new CheckBox("清野E"));
+                    _useQ = Menu.Add("jglUseQ", new CheckBox("使用 Q"));
+                    _mana = Menu.Add("jglMana", new Slider("最大蓝量使用百分比 ({0}%)", 40));
+                    _useE = Menu.Add("jglUseE", new CheckBox("使用 E"));
                 }
 
                 public static void Initialize()
