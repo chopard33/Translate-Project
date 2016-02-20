@@ -101,7 +101,7 @@ namespace iAhri
             menu = MainMenu.AddMenu(AddonName, AddonName + " by " + Author + "v1.0");
             menu.AddLabel(AddonName + " made by " + Author);
 
-            SubMenu["Combo"] = menu.AddSubMenu("连招", "连招");
+            SubMenu["Combo"] = menu.AddSubMenu("连招", "Combo");
             SubMenu["Combo"].Add("Q", new CheckBox("使用 Q", true));
             SubMenu["Combo"].Add("W", new CheckBox("使用 W", true));
             SubMenu["Combo"].Add("E", new CheckBox("使用 E", true));
@@ -109,32 +109,32 @@ namespace iAhri
             SubMenu["Combo"].Add("CatchQR", new CheckBox("使用R来接住Q", true));
             SubMenu["Combo"].Add("CatchQRPriority", new CheckBox("优先使用R接住Q", true));
 
-            SubMenu["Harass"] = menu.AddSubMenu("骚扰", "骚扰");
+            SubMenu["Harass"] = menu.AddSubMenu("骚扰", "Harass");
             SubMenu["Harass"].Add("Q", new CheckBox("使用 Q", true));
             SubMenu["Harass"].Add("W", new CheckBox("使用 W", false));
             SubMenu["Harass"].Add("E", new CheckBox("使用 E", false));
             SubMenu["Harass"].Add("Mana", new Slider("最低蓝量使用:", 20, 0, 100));
 
-            SubMenu["JungleClear"] = menu.AddSubMenu("清野", "清野");
+            SubMenu["JungleClear"] = menu.AddSubMenu("清野", "JungleClear");
             SubMenu["JungleClear"].Add("Q", new CheckBox("使用 Q", true));
             SubMenu["JungleClear"].Add("W", new CheckBox("使用 W", true));
             SubMenu["JungleClear"].Add("E", new CheckBox("使用 E", true));
             SubMenu["JungleClear"].Add("Mana", new Slider("最低蓝量使用:", 20, 0, 100));
 
-            SubMenu["KillSteal"] = menu.AddSubMenu("抢头", "抢头");
+            SubMenu["KillSteal"] = menu.AddSubMenu("抢头", "KillSteal");
             SubMenu["KillSteal"].Add("Q", new CheckBox("使用 Q", true));
             SubMenu["KillSteal"].Add("W", new CheckBox("使用 W", true));
             SubMenu["KillSteal"].Add("E", new CheckBox("使用 E", true));
             SubMenu["KillSteal"].Add("Ignite", new CheckBox("使用点燃", true));
 
-            SubMenu["Flee"] = menu.AddSubMenu("逃跑", "逃跑");
+            SubMenu["Flee"] = menu.AddSubMenu("逃跑", "Flee");
             SubMenu["Flee"].Add("Q", new CheckBox("使用 Q", true));
             SubMenu["Flee"].Add("R", new CheckBox("使用 R", true));
 
-            SubMenu["Draw"] = menu.AddSubMenu("线圈", "线圈");
+            SubMenu["Draw"] = menu.AddSubMenu("线圈", "Draw");
             SubMenu["Draw"].Add("Line", new CheckBox("显示Q路径", true));
 
-            SubMenu["Misc"] = menu.AddSubMenu("杂项", "杂项");
+            SubMenu["Misc"] = menu.AddSubMenu("杂项", "Misc");
             SubMenu["Misc"].Add("Overkill", new Slider("伤害预测 %（防浪费技能在可击杀敌人身上）", 10, 0, 100));
             SubMenu["Misc"].Add("CatchQMovement", new CheckBox("移动接Q", false));
             SubMenu["Misc"].Add("Gapclose", new CheckBox("使用E造成间距", true));
