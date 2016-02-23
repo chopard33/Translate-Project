@@ -558,7 +558,7 @@ namespace Hellsing.Kalista
 
                     if (SoulBoundSaver.SoulBound.ChampionName != "Blitzcrank")
                     {
-                        Menu.AddLabel("你没对机器人进行灵魂连接（合体）!");
+                        Menu.AddLabel("你没对机器人进行灵魂连接（合体）快去滚床单吧~!<3");
                         Menu.AddLabel("如果你要重新进行灵魂连接，请重新载入脚本（F5）");
                         Menu.AddLabel("确保系统发现你的新对象（连接对象），祝你们开心合体!");
                         return;

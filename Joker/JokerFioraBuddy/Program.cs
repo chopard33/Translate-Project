@@ -61,16 +61,16 @@ namespace JokerFioraBuddy
             if (showNotification)
             {
                 if (UpdateChecker.gitVersion != typeof(Program).Assembly.GetName().Version)
-                    Notification.DrawNotification(new NotificationModel(Game.Time, 7f, 2f, "旧版本 - 请联系CH更新，或者使用原版: " + UpdateChecker.gitVersion, Color.Red));
+                    Notification.DrawNotification(new NotificationModel(Game.Time, 7f, 2f, "OUTDATED - Please update to version: " + UpdateChecker.gitVersion, Color.Red));
                 else
-                    Notification.DrawNotification(new NotificationModel(Game.Time, 7f, 2f, "最新版 - 版本: " + UpdateChecker.gitVersion, Color.White));
+                    Notification.DrawNotification(new NotificationModel(Game.Time, 7f, 2f, "UPDATED - Version: " + UpdateChecker.gitVersion, Color.White));
             }
             else
             {
                 if (UpdateChecker.gitVersion != typeof(Program).Assembly.GetName().Version)
-                    Chat.Print("<font color='#15C3AC'>Joker Fiora - The Grand Duelist:</font> <font color='#FF0000'>" + "旧版本 - 请联系CH更新，或者使用原版: " + UpdateChecker.gitVersion + "</font>");
+                    Chat.Print("<font color='#15C3AC'>Joker Fiora - The Grand Duelist:</font> <font color='#FF0000'>" + "OUTDATED - Please update to version: " + UpdateChecker.gitVersion + "</font>");
                 else
-                    Chat.Print("<font color='#15C3AC'>Joker Fiora - The Grand Duelist:</font> <font color='#00FF00'>" + "最新版 - 版本: " + UpdateChecker.gitVersion + "</font>");
+                    Chat.Print("<font color='#15C3AC'>Joker Fiora - The Grand Duelist:</font> <font color='#00FF00'>" + "UPDATED - Version: " + UpdateChecker.gitVersion + "</font>");
             }
         }
 
