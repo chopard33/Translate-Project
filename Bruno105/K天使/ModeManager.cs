@@ -31,9 +31,9 @@ namespace KKayle
             {
                 W.Cast(Player.Instance);
             }
-            if (E.IsReady() && Program._Player.Distance(alvo) <= Program._Player.GetAutoAttackRange() + 400)
+            if (E.IsReady() && E.IsInRange(alvo))
             {
-                E.Cast();
+                E.Cast(alvo);
             }
         }
 
@@ -57,9 +57,9 @@ namespace KKayle
             {
                 W.Cast(Player.Instance);
             }
-            if (E.IsReady() && (Program._Player.Distance(alvo) <= Program._Player.GetAutoAttackRange() + 400) && Program.HarassMenu["HarassE"].Cast<CheckBox>().CurrentValue)
+            if (E.IsReady() && (E.IsInRange(alvo)) && Program.HarassMenu["HarassE"].Cast<CheckBox>().CurrentValue)
             {
-                E.Cast();
+                E.Cast(alvo);
             }
         }
 
@@ -69,22 +69,22 @@ namespace KKayle
             var W = Program.W;
             var E = Program.E;
             var R = Program.R;
-            var minion = EntityManager.MinionsAndMonsters.EnemyMinions.FirstOrDefault(m => m.IsValidTarget(E.Range));
+            var minion = EntityManager.MinionsAndMonsters.EnemyMinions.FirstOrDefault(m => m.IsValidTarget(Q.Range));
+            var qminions = EntityManager.MinionsAndMonsters.EnemyMinions.FirstOrDefault(m => m.IsValidTarget(Program.Q.Range));
             var Cminion = EntityManager.MinionsAndMonsters.EnemyMinions.Where(t => t.IsInRange(Player.Instance.Position, Q.Range) && !t.IsDead && t.IsValid && !t.IsInvulnerable).Count();
             if (minion == null) return;
             if (!(Player.Instance.ManaPercent > Program.FarmMenu["ManaF"].Cast<Slider>().CurrentValue))
             {
                 return;
             }
-            if (Q.IsReady() && Program.FarmMenu["FarmQ"].Cast<CheckBox>().CurrentValue && Q.IsInRange(minion) && minion.IsValidTarget(Q.Range))
+            if (Q.IsReady() && Program.FarmMenu["FarmQ"].Cast<CheckBox>().CurrentValue && Q.IsInRange(qminions) && minion.IsValidTarget(Q.Range) && qminions.Health < DamageLib.QCalc(qminions))
             {
-                    Q.Cast(minion);
+                    Q.Cast(qminions);
 
-                    if (E.IsReady() && Program.FarmMenu["FarmE"].Cast<CheckBox>().CurrentValue && (Program._Player.Distance(minion) <= Program._Player.GetAutoAttackRange() + 400) /*&& (Cminion >= Program.FarmMenu["MinionE"].Cast<Slider>().CurrentValue)*/)
-                {
-                    E.Cast();
-                }
-
+                               }
+            if (E.IsReady() && Program.FarmMenu["FarmE"].Cast<CheckBox>().CurrentValue /*&& (Cminion >= Program.FarmMenu["MinionE"].Cast<Slider>().CurrentValue)*/)
+            {
+                E.Cast(minion);
             }
 
         }
@@ -109,7 +109,7 @@ namespace KKayle
 
                 if (E.IsReady() && Program.FarmMenu["FarmE"].Cast<CheckBox>().CurrentValue && jungleMonsters.IsValidTarget(Q.Range))
                 {
-                    E.Cast();
+                    E.Cast(jungleMonsters);
                 }
 
             }

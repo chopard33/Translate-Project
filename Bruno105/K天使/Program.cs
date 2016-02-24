@@ -20,7 +20,7 @@ namespace KKayle
 
         public static Spell.Targeted Q;
         public static Spell.Targeted W;
-        public static Spell.Active E;
+        public static Spell.Skillshot E;
         public static Spell.Targeted R;
         private static Spell.Targeted Ignite;
 
@@ -76,7 +76,7 @@ namespace KKayle
                 Q = new Spell.Targeted(SpellSlot.Q, 650);
                     Q.CastDelay = 5;
                 W = new Spell.Targeted(SpellSlot.W, 900);
-                E = new Spell.Active(SpellSlot.E);
+                E = new Spell.Skillshot(SpellSlot.E, 650, SkillShotType.Circular, 1, 50, 400);
                 R = new Spell.Targeted(SpellSlot.R, 900);
                 if (Spell1("ignite"))   
                 {
@@ -253,7 +253,7 @@ namespace KKayle
         public static void DamageC(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         
         {
-            if (_Player.IsRecalling()) return;
+            /* if (_Player.IsRecalling()) return;
             var target = args.Target as Obj_AI_Base;
             if (!target.IsAlly || sender.IsAlly || target == null)
             {
@@ -269,7 +269,7 @@ namespace KKayle
             if (target.IsUnderTurret())
             {
                 OnDamage = true;
-            }
+            }*/
 
         }
 
