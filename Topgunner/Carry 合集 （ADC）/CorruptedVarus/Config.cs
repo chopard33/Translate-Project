@@ -4,7 +4,7 @@ using EloBuddy.SDK;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable MemberHidesStaticFromOuterClass
-namespace PurifierVayne
+namespace CorruptedVarus
 {
     // I can't really help you with my layout of a good config class
     // since everyone does it the way they like it most, go checkout my
@@ -12,7 +12,7 @@ namespace PurifierVayne
     // complex way that I use
     public static class Config
     {
-        private const string MenuName = "淨化者薇恩";
+        private const string MenuName = "腐败之箭韦鲁斯";
 
         private static readonly Menu Menu;
 
@@ -20,16 +20,11 @@ namespace PurifierVayne
         {
             // Initialize the menu
             Menu = MainMenu.AddMenu(MenuName, MenuName.ToLower());
-            Menu.AddGroupLabel("欢迎使用淨化者薇恩 by TopGunner");
+            Menu.AddGroupLabel("Welcome to Corrupted Varus by TopGunner");
             Menu.AddGroupLabel("CARRY合集由CH汉化");
-            Menu.AddGroupLabel("挂机的话请不要勾开局买装备以及逃跑Q/任何Q至鼠标的功能");
-
 
             // Initialize the modes
-            Misc.Initialize();
             Modes.Initialize();
-            ESettings.Initialize();
-            QSettings.Initialize();
 
         }
 
@@ -37,148 +32,6 @@ namespace PurifierVayne
         {
         }
 
-        public static class QSettings
-        {
-            private static readonly Menu Menu;
-            private static readonly CheckBox _useQToMouse;
-            private static readonly CheckBox _gapcloserQ;
-            private static readonly CheckBox _fleeQ;
-            private static readonly Slider _defQ;
-            private static readonly Slider _lowHPQ;
-            private static readonly CheckBox _unkillableMinion;
-            private static readonly CheckBox _useQToMouseCombo;
-            private static readonly CheckBox _useQToMouseHarass;
-            private static readonly CheckBox _useQToMouseLaneClear;
-            private static readonly CheckBox _useQToMouseLastHit;
-
-            public static bool useQToMouse
-            {
-                get { return _useQToMouse.CurrentValue; }
-            }
-            public static bool unkillableMinion
-            {
-                get { return _unkillableMinion.CurrentValue; }
-            }
-            public static bool comboQToMouse
-            {
-                get { return _useQToMouseCombo.CurrentValue; }
-            }
-            public static bool harassQToMouse
-            {
-                get { return _useQToMouseHarass.CurrentValue; }
-            }
-            public static bool laneClearQToMouse
-            {
-                get { return _useQToMouseLaneClear.CurrentValue; }
-            }
-            public static bool lastHitQToMouse
-            {
-                get { return _useQToMouseLastHit.CurrentValue; }
-            }
-            public static bool GapcloserQ
-            {
-                get { return _gapcloserQ.CurrentValue; }
-            }
-            public static bool fleeQ
-            {
-                get { return _fleeQ.CurrentValue; }
-            }
-            public static int defQ
-            {
-                get { return _defQ.CurrentValue; }
-            }
-            public static int lowHPQ
-            {
-                get { return _lowHPQ.CurrentValue; }
-            }
-
-
-
-            static QSettings()
-            {
-                Menu = Config.Menu.AddSubMenu("Q 设置");
-                Menu.AddSeparator();
-                _useQToMouse = Menu.Add("useQToMouse", new CheckBox("Q至鼠标位置", false));
-                _gapcloserQ = Menu.Add("gapcloserQ", new CheckBox("使用Q造成间距"));
-                _fleeQ = Menu.Add("fleeQ", new CheckBox("逃跑Q (至鼠标位置)"));
-                _unkillableMinion = Menu.Add("unkillableMinion", new CheckBox("普攻无法杀死小兵时使用Q尾兵"));
-                Menu.AddSeparator();
-                _useQToMouseCombo = Menu.Add("useQToMouseCombo", new CheckBox("连招Q至鼠标位置", false));
-                _useQToMouseHarass = Menu.Add("useQToMouseHarass", new CheckBox("骚扰Q至鼠标位置", false));
-                _useQToMouseLaneClear = Menu.Add("useQToMouseLaneClear", new CheckBox("清线Q至鼠标位置", false));
-                _useQToMouseLastHit = Menu.Add("useQToMouselastHit", new CheckBox("尾兵Q至鼠标位置", false));
-                Menu.AddSeparator();
-                _defQ = Menu.Add("defQ", new Slider("防守型 Q 当 ({0}) 个敌人多于友军", 1, 0, 4));
-                _lowHPQ = Menu.Add("lowHPQ", new Slider("低血量 Q 当自身血量少于 ({0}%)", 10, 1, 100));
-            }
-
-            public static void Initialize()
-            {
-            }
-        }
-        public static class ESettings
-        {
-            private static readonly Menu Menu;
-            private static readonly CheckBox _harassEProcW;
-            private static readonly CheckBox _harassPinToWall;
-            private static readonly CheckBox _comboEProcW;
-            private static readonly CheckBox _comboPinToWall;
-            public static readonly CheckBox _ksE;
-            public static readonly CheckBox _interruptE;
-            public static readonly CheckBox _useEOnGapcloser;
-
-            public static bool harassEProcW
-            {
-                get { return _harassEProcW.CurrentValue; }
-            }
-            public static bool harassPinToWall
-            {
-                get { return _harassPinToWall.CurrentValue; }
-            }
-            public static bool comboEProcW
-            {
-                get { return _comboEProcW.CurrentValue; }
-            }
-            public static bool comboPinToWall
-            {
-                get { return _comboPinToWall.CurrentValue; }
-            }
-            public static bool ksE
-            {
-                get { return _ksE.CurrentValue; }
-            }
-            public static bool interruptE
-            {
-                get { return _interruptE.CurrentValue; }
-            }
-            public static bool useEOnGapcloser
-            {
-                get { return _useEOnGapcloser.CurrentValue; }
-            }
-            public static bool condemnAfterNextAA
-            {
-                get { return Menu["CondemnHotkey"].Cast<KeyBind>().CurrentValue; }
-            }
-            static ESettings()
-            {
-                Menu = Config.Menu.AddSubMenu("E 设置");
-                Menu.AddGroupLabel("骚扰");
-                _harassEProcW = Menu.Add("harassEProcW", new CheckBox("尝试叠加W骚扰", false));
-                _harassPinToWall = Menu.Add("harassPinToWall", new CheckBox("骚扰定墙"));
-                Menu.AddGroupLabel("连招");
-                _comboEProcW = Menu.Add("comboEProcW", new CheckBox("尝试叠加W连招", false));
-                _comboPinToWall = Menu.Add("comboPinToWall", new CheckBox("连招定墙"));
-                Menu.AddGroupLabel("杂项");
-                _interruptE = Menu.Add("interruptE", new CheckBox("使用E技能打断"));
-                _ksE = Menu.Add("ksE", new CheckBox("E抢人头", false));
-                _useEOnGapcloser = Menu.Add("useEOnGapcloser", new CheckBox("使用Q+E造成间距", false));
-                Menu.Add("CondemnHotkey", new KeyBind("下一个AA后使用E", false, KeyBind.BindTypes.HoldActive, 'Y'));
-            }
-
-            public static void Initialize()
-            {
-            }
-        }
 
         public static class Misc
         {
@@ -186,21 +39,39 @@ namespace PurifierVayne
             private static readonly Menu Menu;
             public static readonly CheckBox _drawQ;
             public static readonly CheckBox _drawE;
-            public static readonly CheckBox _drawReady;
+            public static readonly CheckBox _drawR;
+            public static readonly CheckBox _drawCDSpells;
+            public static readonly CheckBox _ksQ;
+            public static readonly CheckBox _ksE;
+            public static readonly CheckBox _ksR;
             private static readonly CheckBox _useHeal;
             private static readonly CheckBox _useQSS;
-            private static readonly CheckBox _useQOnGapcloser;
+            private static readonly CheckBox _useEFlee;
             private static readonly CheckBox _autoBuyStartingItems;
             private static readonly CheckBox _autolevelskills;
             private static readonly Slider _skinId;
             public static readonly CheckBox _useSkinHack;
-            private static readonly CheckBox _cleanseStun;
-            private static readonly Slider _cleanseEnemies;
             private static readonly CheckBox[] _useHealOn = { new CheckBox("", false), new CheckBox("", false), new CheckBox("", false), new CheckBox("", false), new CheckBox("", false) };
 
             public static bool useHealOnI(int i)
             {
                 return _useHealOn[i].CurrentValue;
+            }
+            public static bool drawCDSpells
+            {
+                get { return _drawCDSpells.CurrentValue; }
+            }
+            public static bool ksQ
+            {
+                get { return _ksQ.CurrentValue; }
+            }
+            public static bool ksE
+            {
+                get { return _ksE.CurrentValue; }
+            }
+            public static bool ksR
+            {
+                get { return _ksR.CurrentValue; }
             }
             public static bool useHeal
             {
@@ -210,9 +81,9 @@ namespace PurifierVayne
             {
                 get { return _useQSS.CurrentValue; }
             }
-            public static bool useQOnGapcloser
+            public static bool useEFlee
             {
-                get { return _useQOnGapcloser.CurrentValue; }
+                get { return _useEFlee.CurrentValue; }
             }
             public static bool autoBuyStartingItems
             {
@@ -230,18 +101,6 @@ namespace PurifierVayne
             {
                 get { return _useSkinHack.CurrentValue; }
             }
-            public static int cleanseEnemies
-            {
-                get { return _cleanseEnemies.CurrentValue; }
-            }
-            public static bool cleanseStun
-            {
-                get { return _cleanseStun.CurrentValue; }
-            }
-            public static bool drawReady
-            {
-                get { return _drawReady.CurrentValue; }
-            }
 
 
             static Misc()
@@ -250,23 +109,28 @@ namespace PurifierVayne
                 Menu = Config.Menu.AddSubMenu("杂项");
                 _drawQ = Menu.Add("drawQ", new CheckBox("显示 Q"));
                 _drawE = Menu.Add("drawE", new CheckBox("显示 E"));
-                _drawReady = Menu.Add("drawReady", new CheckBox("显示无冷却技能线圈"));
+                _drawR = Menu.Add("drawR", new CheckBox("显示 R"));
+                _drawCDSpells = Menu.Add("drawCDSpells", new CheckBox("显示冷却中的技能"));
                 Menu.AddSeparator();
-                _useHeal = Menu.Add("useHeal", new CheckBox("使用治疗"));
+                _ksQ = Menu.Add("ksQ", new CheckBox("Q抢头"));
+                _ksE = Menu.Add("ksE", new CheckBox("E抢头"));
+                _ksR = Menu.Add("ksR", new CheckBox("R抢头"));
+                Menu.AddSeparator();
+                _useHeal = Menu.Add("useHeal", new CheckBox("智能使用治疗"));
                 _useQSS = Menu.Add("useQSS", new CheckBox("使用水银"));
                 Menu.AddSeparator();
                 for (int i = 0; i < EntityManager.Heroes.Allies.Count; i++)
                 {
-                    _useHealOn[i] = Menu.Add("useHeal" + i, new CheckBox("对友军使用治疗 " + EntityManager.Heroes.Allies[i].ChampionName));
+                    _useHealOn[i] = Menu.Add("useHeal" + i, new CheckBox("使用治疗给 " + EntityManager.Heroes.Allies[i].ChampionName));
                 }
                 Menu.AddSeparator();
-                _useQOnGapcloser = Menu.Add("useQOnGapcloser", new CheckBox("使用Q造成间距", false));
+                _useEFlee = Menu.Add("useEFlee", new CheckBox("逃跑模式使用E"));
                 Menu.AddSeparator();
-                _autolevelskills = Menu.Add("autolevelskills", new CheckBox("自动加点"));
-                _autoBuyStartingItems = Menu.Add("autoBuyStartingItems", new CheckBox("开局自动买物品 (召唤师峡谷)", false));
+                _autolevelskills = Menu.Add("autolevelskills", new CheckBox("自动加点", false));
+                _autoBuyStartingItems = Menu.Add("autoBuyStartingItems", new CheckBox("开局自动购买物品 (召唤师峡谷)", false));
                 Menu.AddSeparator();
                 _useSkinHack = Menu.Add("useSkinHack", new CheckBox("换肤", false));
-                _skinId = Menu.Add("skinId", new Slider("Skin ID", 6, 1, 10));
+                _skinId = Menu.Add("skinId", new Slider("Skin ID", 3, 1, 6));
             }
 
             public static void Initialize()
@@ -302,9 +166,11 @@ namespace PurifierVayne
             public static class Combo
             {
                 private static readonly CheckBox _useQ;
+                private static readonly CheckBox _useQInstant;
                 private static readonly CheckBox _useE;
+                private static readonly CheckBox _useEInstant;
                 private static readonly CheckBox _useR;
-                private static readonly Slider _useREnemies;
+                private static readonly CheckBox _useRInstant;
                 private static readonly CheckBox _useBOTRK;
                 private static readonly CheckBox _useYOUMOUS;
                 private static readonly CheckBox _useWardVision;
@@ -314,17 +180,25 @@ namespace PurifierVayne
                 {
                     get { return _useQ.CurrentValue; }
                 }
+                public static bool UseQInstant
+                {
+                    get { return _useQInstant.CurrentValue; }
+                }
                 public static bool UseE
                 {
                     get { return _useE.CurrentValue; }
+                }
+                public static bool UseEInstant
+                {
+                    get { return _useEInstant.CurrentValue; }
                 }
                 public static bool UseR
                 {
                     get { return _useR.CurrentValue; }
                 }
-                public static int UseREnemies
+                public static bool UseRInstant
                 {
-                    get { return _useREnemies.CurrentValue; }
+                    get { return _useRInstant.CurrentValue; }
                 }
                 public static bool useWardVision
                 {
@@ -342,6 +216,10 @@ namespace PurifierVayne
                 {
                     get { return _useYOUMOUS.CurrentValue; }
                 }
+                public static bool RPressed
+                {
+                    get { return Menu["RHotkey"].Cast<KeyBind>().CurrentValue; }
+                }
 
 
                 static Combo()
@@ -349,13 +227,16 @@ namespace PurifierVayne
                     // Initialize the menu values
                     Menu.AddGroupLabel("连招");
                     _useQ = Menu.Add("comboUseQ", new CheckBox("使用 Q"));
-                    _useE = Menu.Add("comboUseE", new CheckBox("使用 E"));
-                    _useR = Menu.Add("comboUseR", new CheckBox("使用 R"));
-                    _useREnemies = Menu.Add("useREnemies", new Slider("附近有 X名敌人连招使用R", 2, 1, 5));
-                    _useBOTRK = Menu.Add("useBotrk", new CheckBox("使用破败（智能）和小破败"));
-                    _useYOUMOUS = Menu.Add("useYoumous", new CheckBox("使用幽梦"));
-                    _useWardVision = Menu.Add("useWardVision", new CheckBox("插眼视野"));
-                    _useTrinketVision = Menu.Add("useTrinketVision", new CheckBox("使用饰品视野"));
+                    _useQInstant = Menu.Add("comboUseQInstant", new CheckBox("施放快速Q", false));
+                    _useE = Menu.Add("comboUseE", new CheckBox("Use E"));
+                    _useEInstant = Menu.Add("comboUseEInstant", new CheckBox("施放快速E", false));
+                    _useR = Menu.Add("comboUseR", new CheckBox("Use R"));
+                    _useRInstant = Menu.Add("comboUseRInstant", new CheckBox("施放快速R", false));
+                    Menu.Add("RHotkey", new KeyBind("将会使用R (无论模式!)", false, KeyBind.BindTypes.HoldActive, 'G'));
+                    _useBOTRK = Menu.Add("useBotrk", new CheckBox("使用 破败（智能）和弯刀"));
+                    _useYOUMOUS = Menu.Add("useYoumous", new CheckBox("使用 幽梦"));
+                    _useWardVision = Menu.Add("useWardVision", new CheckBox("使用眼做视野"));
+                    _useTrinketVision = Menu.Add("useTrinketVision", new CheckBox("使用饰品做视野"));
                 }
 
                 public static void Initialize()
@@ -384,7 +265,7 @@ namespace PurifierVayne
                     // way that I used in the combo class
                     Menu.AddGroupLabel("骚扰");
                     Menu.Add("harassUseQ", new CheckBox("使用 Q"));
-                    Menu.Add("harassUseE", new CheckBox("使用 E"));
+                    Menu.Add("harassUseE", new CheckBox("使用 E")); // Default false
 
                     // Adding a slider, we have a little more options with them, using {0} {1} and {2}
                     // in the display name will replace it with 0=current 1=min and 2=max value
@@ -398,11 +279,16 @@ namespace PurifierVayne
             public static class LaneClear
             {
                 private static readonly CheckBox _useQ;
+                private static readonly CheckBox _useE;
                 private static readonly Slider _mana;
 
                 public static bool UseQ
                 {
                     get { return _useQ.CurrentValue; }
+                }
+                public static bool UseE
+                {
+                    get { return _useE.CurrentValue; }
                 }
                 public static int mana
                 {
@@ -414,6 +300,7 @@ namespace PurifierVayne
                     // Initialize the menu values
                     Menu.AddGroupLabel("清线");
                     _useQ = Menu.Add("clearUseQ", new CheckBox("使用 Q"));
+                    _useE = Menu.Add("clearUseE", new CheckBox("使用 E"));
                     _mana = Menu.Add("clearMana", new Slider("最大蓝量使用百分比 ({0}%)", 40));
                 }
 
@@ -421,7 +308,6 @@ namespace PurifierVayne
                 {
                 }
             }
-
             public static class JungleClear
             {
                 private static readonly CheckBox _useQ;
@@ -446,8 +332,8 @@ namespace PurifierVayne
                     // Initialize the menu values
                     Menu.AddGroupLabel("清野");
                     _useQ = Menu.Add("jglUseQ", new CheckBox("使用 Q"));
-                    _mana = Menu.Add("jglMana", new Slider("最大蓝量使用百分比 ({0}%)", 40));
                     _useE = Menu.Add("jglUseE", new CheckBox("使用 E"));
+                    _mana = Menu.Add("jglMana", new Slider("最大蓝量使用百分比 ({0}%)", 40));
                 }
 
                 public static void Initialize()
