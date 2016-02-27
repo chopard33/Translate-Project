@@ -253,7 +253,7 @@ namespace KKayle
         public static void DamageC(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         
         {
-            /* if (_Player.IsRecalling()) return;
+            /*if (_Player.IsRecalling()) return;
             var target = args.Target as Obj_AI_Base;
             if (!target.IsAlly || sender.IsAlly || target == null)
             {
