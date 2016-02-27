@@ -147,9 +147,9 @@ namespace AutoBuddy.MainLogics
                 AutoWalker.WalkTo(AutoWalker.p.Position.Away(enemyTurret, 1200));
                 AutoWalker.SetMode(Orbwalker.ActiveModes.Flee);
             }
-            if (AutoWalker.p.HealthPercent < 20)
+            if (AutoWalker.p.HealthPercent < 10)
             {
-                if (AutoWalker.p.HealthPercent < 15)
+                if (AutoWalker.p.HealthPercent < 7)
                 {
                     AutoWalker.UseBarrier();
                     AutoWalker.UseSeraphs();

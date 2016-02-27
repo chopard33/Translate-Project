@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using AutoBuddy.Humanizers;
 using AutoBuddy.Utilities.AutoShop;
@@ -20,7 +20,6 @@ namespace AutoBuddy.MainLogics
         //private float lastRecallGold;
         private float lastRecallTime;
         private int recallsWithGold; //TODO repair shop and remove this tempfix
-        public static Spell.Active B = new Spell.Active(SpellSlot.Recall);
 
         public Recall(LogicSelector currentLogic, Menu parMenu)
         {
@@ -131,7 +130,7 @@ AutoBuddy won't recall if you have less gold than needed for next item.
                     }
                 }
 
-                if ((!AutoWalker.p.IsMoving && ObjectManager.Player.Distance(recallPos) < Orbwalker.HoldRadius + 30) || (AutoWalker.p.IsMoving && ObjectManager.Player.Distance(recallPos) < 30))
+                if ((!AutoWalker.p.IsMoving && ObjectManager.Player.Distance(recallPos) < Orbwalker.HoldRadius + 50) || (AutoWalker.p.IsMoving && ObjectManager.Player.Distance(recallPos) < 50))
                 {
                     CastRecall();
                 }
@@ -142,24 +141,13 @@ AutoBuddy won't recall if you have less gold than needed for next item.
 
         private void CastRecall()
         {
-            if (Game.Time < lastRecallTime || AutoWalker.Recalling() || ObjectManager.Player.Distance(spawn) < 500) return;
-            lastRecallTime = Game.Time + 2f;
+            if (ObjectManager.Player.Distance(spawn) < 500) return;
             Core.DelayAction(CastRecall2, 300);
         }
-
         private void CastRecall2()//Kappa
         {
-            if (AutoWalker.Recalling() || ObjectManager.Player.Distance(spawn) < 500) return;
-            lastRecallTime = Game.Time + 2f;
-            AutoWalker.SetMode(Orbwalker.ActiveModes.None);
-            if (!ObjectManager.Player.IsRecalling())
-            {
-                if (B.IsReady())
-                {
-                    B.Cast();
-                }
-            }  
-            //ObjectManager.Player.Spellbook.CastSpell(SpellSlot.Recall);
+            if (ObjectManager.Player.Distance(spawn) < 500) return;
+            ObjectManager.Player.Spellbook.CastSpell(SpellSlot.Recall);         
         }
     }
 }

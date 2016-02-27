@@ -36,6 +36,7 @@ namespace AutoBuddy
         private static readonly NavGraph NavGraph;
         private static bool oldWalk;
         public static bool newPF;
+        private static bool recalling;
         public static EventHandler EndGame;
         static AutoWalker()
         {
@@ -71,12 +72,21 @@ namespace AutoBuddy
             Core.DelayAction(OnEndGame, 20000);
             updateItems();
             oldOrbwalk();
+            EloBuddy.SDK.Events.Teleport.OnTeleport += Teleport_OnTeleport;
             Game.OnTick += OnTick;
+        }
+
+        private static void Teleport_OnTeleport(Obj_AI_Base sender, EloBuddy.SDK.Events.Teleport.TeleportEventArgs args)
+        {
+            if (sender.NetworkId==p.NetworkId && args.Type == TeleportType.Recall)
+            {
+                recalling = args.Status == TeleportStatus.Start;
+            }
         }
 
         public static bool Recalling()
         {
-            return p.IsRecalling();
+            return recalling;
         }
 
         private static void OnEndGame()
@@ -175,6 +185,9 @@ namespace AutoBuddy
                 }
             }
         }
+
+
+
 
         private static void updateItems()
         {
@@ -297,6 +310,8 @@ namespace AutoBuddy
     }
 
 #endregion
+
+
 
 
 

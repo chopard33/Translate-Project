@@ -34,11 +34,11 @@ namespace AutoBuddy
         private static void Loading_OnLoadingComplete(EventArgs args)
         {
 
-            Telemetry.Init(Path.Combine(Environment.GetFolderPath(
-Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
+//            Telemetry.Init(Path.Combine(Environment.GetFolderPath(
+//Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
             createFS();
-            Chat.Print("AutoBuddy will start in 5 seconds. ");
-            Core.DelayAction(Start, 5000);
+            Chat.Print("AutoBuddy will start in 3 seconds. Updated for 6.4 by TheYasuoMain");
+            Core.DelayAction(Start, 3000);
             menu = MainMenu.AddMenu("自动挂机", "AB");
             menu.Add("sep1", new Separator(1));
             CheckBox c =
@@ -77,7 +77,8 @@ Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
             menu.Add("oldWalk", new CheckBox("Use old orbwalking(press f5 after)", false));
             menu.Add("reselectlane", new CheckBox("Reselect lane", false));
             menu.Add("debuginfo", new CheckBox("Draw debug info(press f5 after)", true));
-            menu.Add("l1", new Label("By Christian Brutal Sniper"));
+            menu.Add("l1", new Label("By Christian Brutal Sniper - Fixed by EnfermeraSexy"));
+            menu.Add("l1", new Label("由CH汉化"));
             Version v = Assembly.GetExecutingAssembly().GetName().Version;
             menu.Add("l2",
                 new Label("Version " + v.Major + "." + v.Minor + " Build time: " + v.Build % 100 + " " +
@@ -87,10 +88,15 @@ Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
 
         }
 
+
+
+
         static void newpf_OnValueChange(ValueBase<bool> sender, ValueBase<bool>.ValueChangeArgs args)
         {
             AutoWalker.newPF = args.NewValue;
         }
+
+
 
         private static void Start()
         {
@@ -113,12 +119,6 @@ Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
                     break;
                 case Champion.Cassiopeia:
                     myChamp = new Cassiopeia();
-                    break;
-                case Champion.Sivir:
-                    myChamp = new Sivir();
-                    break;
-                case Champion.Katarina:
-                    myChamp = new Katarina();
                     break;
             }
             CustomLvlSeq cl = new CustomLvlSeq(menu, AutoWalker.p, Path.Combine(Environment.GetFolderPath(
@@ -162,12 +162,12 @@ Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
 
         private static void createFS()
         {
-            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(
-                Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
-            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(
-                Environment.SpecialFolder.ApplicationData), "AutoBuddy\\Builds"));
-            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(
-                Environment.SpecialFolder.ApplicationData), "AutoBuddy\\Skills"));
+            //Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(
+            //    Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
+            //Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(
+            //    Environment.SpecialFolder.ApplicationData), "AutoBuddy\\Builds"));
+            //Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(
+            //    Environment.SpecialFolder.ApplicationData), "AutoBuddy\\Skills"));
         }
     }
 }

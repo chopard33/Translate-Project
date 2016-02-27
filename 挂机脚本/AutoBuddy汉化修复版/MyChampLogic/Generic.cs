@@ -11,6 +11,9 @@ namespace AutoBuddy.MyChampLogic
         public float OptimalMaxComboDistance { get { return AutoWalker.p.AttackRange; } }
         public float HarassDistance { get { return AutoWalker.p.AttackRange; } }
 
+        public Spell.Active Q;
+        public Spell.Skillshot W, E, R;
+
         public Generic()
         {
             skillSequence = new[] {2, 1, 3, 2, 2, 4, 2, 1, 2, 1, 4, 1, 1, 3, 3, 4, 3, 3};

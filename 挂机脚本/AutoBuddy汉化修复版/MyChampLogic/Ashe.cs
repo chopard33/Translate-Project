@@ -50,55 +50,19 @@ namespace AutoBuddy.MyChampLogic
                         chase => chase.Distance(AutoWalker.p) < 600 && chase.IsVisible());
                 if (chaser != null)
                 {
-                    if (R.IsReady())
-                        R.Cast(chaser);
-
-                    if (W.IsReady())
-                        W.Cast(chaser);
-
-                    if (Q.IsReady() && Q.IsLearned)
-                        Q.Cast();
-                }
-/*
-                if (chaser != null)
-                {
                     if (R.IsReady() && AutoWalker.p.HealthPercent() > 18)
                         R.Cast(chaser);
-
                     if (W.IsReady())
                         W.Cast(chaser);
-
-                    if (Q.IsReady())
-                        Q.Cast();
-                }*/
+                }
             }
         }
 
         public void Combo(AIHeroClient target)
         {
-            if (target != null)
-            {
-                if (R.IsReady())
-                    R.Cast(target);
-
-                if (W.IsReady())
-                    W.Cast(target);
-
-                if (Q.IsReady() && Q.IsLearned)
-                    Q.Cast();
-            }
-            /*
             if (R.IsReady() && target.HealthPercent() < 25 && AutoWalker.p.Distance(target) > 600 &&
                 AutoWalker.p.Distance(target) < 1600 && target.IsVisible())
                 R.Cast(target);
-
-            if (W.IsReady() && AutoWalker.p.Distance(target) > 600 &&
-                AutoWalker.p.Distance(target) < 1600 && target.IsVisible())
-                W.Cast(target);
-
-            if (Q.IsReady() && AutoWalker.p.Distance(target) > 600 &&
-                AutoWalker.p.Distance(target) < 1600 && target.IsVisible())
-                Q.Cast();*/
         }
 
         private void Game_OnTick(System.EventArgs args)
