@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -37,12 +37,12 @@ namespace AutoBuddy
 //            Telemetry.Init(Path.Combine(Environment.GetFolderPath(
 //Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
             createFS();
-            Chat.Print("AutoBuddy will start in 3 seconds. Updated for 6.4 by TheYasuoMain");
+            Chat.Print("AutoBuddy will start in 3 seconds. TheYasuoMain更新");
             Core.DelayAction(Start, 3000);
             menu = MainMenu.AddMenu("自动挂机", "AB");
             menu.Add("sep1", new Separator(1));
             CheckBox c =
-                new CheckBox("喊中路，如果有人呆在中路将会离开(自动选路模式下才有用", true);
+                new CheckBox("喊中路，如果有人呆在中路将会离开(自动选路模式下才有用)", true);
 
             PropertyInfo property2 = typeof(CheckBox).GetProperty("Size");
 
@@ -77,7 +77,7 @@ namespace AutoBuddy
             menu.Add("oldWalk", new CheckBox("Use old orbwalking(press f5 after)", false));
             menu.Add("reselectlane", new CheckBox("Reselect lane", false));
             menu.Add("debuginfo", new CheckBox("Draw debug info(press f5 after)", true));
-            menu.Add("l1", new Label("By Christian Brutal Sniper - Fixed by EnfermeraSexy - 由CH汉化"));
+            menu.Add("l1", new Label("By Christian Brutal Sniper - Fixed by EnfermeraSexy 由CH汉化"));
             Version v = Assembly.GetExecutingAssembly().GetName().Version;
             menu.Add("l2",
                 new Label("Version " + v.Major + "." + v.Minor + " Build time: " + v.Build % 100 + " " +
