@@ -4,7 +4,7 @@ using EloBuddy.SDK;
 
 namespace AutoBuddy.MyChampLogic
 {
-    internal class Sivir : IChampLogic
+    internal class Corki : IChampLogic
     {
 
         public float MaxDistanceForAA { get { return int.MaxValue; } }
@@ -14,11 +14,11 @@ namespace AutoBuddy.MyChampLogic
         public Spell.Active Q;
         public Spell.Skillshot W, E, R;
 
-        public Sivir()
+        public Corki()
         {
             skillSequence = new[] {2, 1, 3, 2, 2, 4, 2, 1, 2, 1, 4, 1, 1, 3, 3, 4, 3, 3};
             ShopSequence =
-                "3340:Buy,2003:StartHpPot,1055:Buy,3086:Buy,2015:Buy,3087:Buy,1001:Buy,1038:Buy,3133:Buy,3508:Buy,3006:Buy,1038:Buy,2003:StopHpPot,1037:Buy,3031:Buy,1038:Buy,1055:Sell,1053:Buy,3072:Buy,3144:Buy,3153:Buy";
+                "3340:Buy,2003:StartHpPot,1055:Buy,3086:Buy,3057:Buy,3044:Buy,3078:Buy,3020:Buy,1038:Buy,3133:Buy,3508:Buy,1038:Buy,2003:StopHpPot,1053:Buy,3072:Buy,1038:Buy,1055:Sell,1037:Buy,3031:Buy,3140:Buy,3139:Buy";
         }
 
         public int[] skillSequence { get; private set; }

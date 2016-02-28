@@ -11,7 +11,6 @@
     <AssemblyName>AutoBuddy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
     <OutputPath>bin\Release</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -35,23 +34,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EloBuddy">
-      <HintPath>C:\Users\JoãoPaulo\AppData\Roaming\EloBuddy\Addons\Libraries\EloBuddy.dll</HintPath>
-    </Reference>
-    <Reference Include="EloBuddy.Sandbox">
-      <HintPath>C:\Users\JoãoPaulo\AppData\Roaming\EloBuddy\Addons\Libraries\EloBuddy.Sandbox.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\EloBuddy\System\EloBuddy.dll</HintPath>
     </Reference>
     <Reference Include="EloBuddy.SDK">
-      <HintPath>C:\Users\JoãoPaulo\AppData\Roaming\EloBuddy\Addons\Libraries\EloBuddy.SDK.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\EloBuddy\System\EloBuddy.SDK.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\JoãoPaulo\AppData\Roaming\EloBuddy\Addons\Libraries\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\EloBuddy\System\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>C:\Users\JoãoPaulo\AppData\Roaming\EloBuddy\Addons\Libraries\SharpDX.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\EloBuddy\System\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D9">
-      <HintPath>C:\Users\JoãoPaulo\AppData\Roaming\EloBuddy\Addons\Libraries\SharpDX.Direct3D9.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\EloBuddy\System\SharpDX.Direct3D9.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,12 +61,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Disrespekt.cs" />
-    <Compile Include="MyChampLogic\Katarina.cs" />
-    <Compile Include="MyChampLogic\Sivir.cs" />
+    <Compile Include="MyChampLogic\Annie.cs" />
+    <Compile Include="MyChampLogic\Anivia.cs" />
+    <Compile Include="MyChampLogic\Corki.cs" />
+    <Compile Include="MyChampLogic\Brand.cs" />
     <Compile Include="MyChampLogic\Ezreal.cs" />
     <Compile Include="AutoWalker.cs" />
     <Compile Include="BrutalExtensions.cs" />
     <Compile Include="MyChampLogic\Cassiopeia.cs" />
+    <Compile Include="MyChampLogic\Ahri.cs" />
+    <Compile Include="MyChampLogic\Kayle.cs" />
+    <Compile Include="MyChampLogic\Sivir.cs" />
+    <Compile Include="MyChampLogic\Azir.cs" />
+    <Compile Include="MyChampLogic\Xerath.cs" />
+    <Compile Include="MyChampLogic\Tristana.cs" />
+    <Compile Include="MyChampLogic\Soraka.cs" />
+    <Compile Include="MyChampLogic\Ryze.cs" />
     <Compile Include="MyChampLogic\Generic.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -120,14 +126,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\item.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
