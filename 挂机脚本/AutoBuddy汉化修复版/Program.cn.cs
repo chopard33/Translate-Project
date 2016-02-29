@@ -21,16 +21,9 @@ namespace AutoBuddy
 {
     internal static class Program
     {
-
-        private static AIHeroClient myHero
-        {
-            get { return Player.Instance; }
-        }
         private static Menu menu;
         private static IChampLogic myChamp;
         private static LogicSelector Logic { get; set; }
-        //For kalista
-        public static Item BlackSpear;
 
         public static void Main()
         {
@@ -40,19 +33,11 @@ namespace AutoBuddy
 
         private static void Loading_OnLoadingComplete(EventArgs args)
         {
-            if (myHero.Hero == Champion.Kalista)
-            {
-                BlackSpear = new Item(ItemId.The_Black_Spear);
-                Chat.Print("Auto Black Spear loaded! Thanks @Enelx");
-                Chat.Print("载入自动黑矛!（滑板鞋） Thanks @Enelx");
-                Game.OnUpdate += On_Update;
-            }
 
-            // Telemetry.Init(Path.Combine(Environment.GetFolderPath(
-            // Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
+           // Telemetry.Init(Path.Combine(Environment.GetFolderPath(
+// Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
             createFS();
             Chat.Print("AutoBuddy will start in 5 seconds. Updated for 6.4 by TheYasuoMain");
-            Chat.Print("5秒后自动开始，请耐心等待");
             Core.DelayAction(Start, 5000);
             menu = MainMenu.AddMenu("自动挂机", "AB");
             menu.Add("sep1", new Separator(1));
@@ -110,22 +95,7 @@ namespace AutoBuddy
             AutoWalker.newPF = args.NewValue;
         }
 
-        //For Kalista
-        private static void On_Update(EventArgs args)
-        {
-            if (BlackSpear.IsOwned())
-            {
-                foreach (AIHeroClient ally in EntityManager.Heroes.Allies)
-                {
-                    if (ally != null)
-                    {
-                        Console.Write("Searching for target");
-                        BlackSpear.Cast(ally);
-                    }
-                }
-            }
-        }
-        //For Kalista
+
 
         private static void Start()
         {
@@ -184,18 +154,6 @@ namespace AutoBuddy
                     break;
                 case Champion.Xerath:
                     myChamp = new Xerath();
-                    break;
-                case Champion.Morgana:
-                    myChamp = new Morgana();
-                    break;
-                case Champion.Draven:
-                    myChamp = new Draven();
-                    break;
-                case Champion.Twitch:
-                    myChamp = new Twitch();
-                    break;
-                case Champion.Kalista:
-                    myChamp = new Kalista();
                     break;
             }
             CustomLvlSeq cl = new CustomLvlSeq(menu, AutoWalker.p, Path.Combine(Environment.GetFolderPath(
