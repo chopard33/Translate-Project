@@ -82,7 +82,7 @@ namespace ScaryKalista
                 if (Config.SentinelMenu.IsChecked("sentinel.alert") && entry.Value.Any(o => o.Value.Health == 1))
                 {
                     var activeSentinel = entry.Value.First(o => o.Value.Health == 1);
-                    Chat.Print("守卫正被攻击[Kalista] Sentinel at {0} taking damage! (local ping)",
+                    Chat.Print("[Kalista] Sentinel at {0} taking damage! (local ping)",
                         string.Concat((entry.Key == GameObjectTeam.Order
                             ? "Blue-Jungle"
                             : entry.Key == GameObjectTeam.Chaos

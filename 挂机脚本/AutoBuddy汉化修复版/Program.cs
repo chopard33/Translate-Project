@@ -44,7 +44,6 @@ namespace AutoBuddy
             {
                 BlackSpear = new Item(ItemId.The_Black_Spear);
                 Chat.Print("Auto Black Spear loaded! Thanks @Enelx");
-                Chat.Print("载入自动黑矛!（滑板鞋） Thanks @Enelx");
                 Game.OnUpdate += On_Update;
             }
 
@@ -52,7 +51,6 @@ namespace AutoBuddy
             // Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
             createFS();
             Chat.Print("AutoBuddy will start in 5 seconds. Updated for 6.4 by TheYasuoMain");
-            Chat.Print("5秒后自动开始，请耐心等待");
             Core.DelayAction(Start, 5000);
             menu = MainMenu.AddMenu("自动挂机", "AB");
             menu.Add("sep1", new Separator(1));
