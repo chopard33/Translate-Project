@@ -10,6 +10,7 @@ using AutoBuddy.Utilities;
 using AutoBuddy.Utilities.AutoLvl;
 using AutoBuddy.Utilities.AutoShop;
 using EloBuddy;
+using EloBuddy.Sandbox;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu;
@@ -47,12 +48,16 @@ namespace AutoBuddy
                 Game.OnUpdate += On_Update;
             }
 
-            // Telemetry.Init(Path.Combine(Environment.GetFolderPath(
-            // Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
+
+            //Causes freeze
+            //Telemetry.Init(Path.Combine(SandboxConfig.DataDirectory
+            //, "AutoBuddy"));
+            
             createFS();
-            Chat.Print("AutoBuddy will start in 5 seconds. Updated for 6.4 by TheYasuoMain");
+            Chat.Print("AutoBuddy: Starting in 5 seconds.");
+            Chat.Print("Custom builds fixed, read EB post.");
             Core.DelayAction(Start, 5000);
-            menu = MainMenu.AddMenu("自动挂机", "AB");
+            menu = MainMenu.AddMenu("CH汉化-自动挂机", "AB");
             menu.Add("sep1", new Separator(1));
             CheckBox c =
                 new CheckBox("喊中路，如果有人呆在中路将会离开(自动选路模式下才有用)", true);
@@ -195,13 +200,28 @@ namespace AutoBuddy
                 case Champion.Kalista:
                     myChamp = new Kalista();
                     break;
+                case Champion.Velkoz:
+                    myChamp = new Velkoz();
+                    break;
+                case Champion.Leblanc:
+                    myChamp = new Leblanc();
+                    break;
+                case Champion.Jinx:
+                    myChamp = new Jinx();
+                    break;
+                case Champion.Katarina:
+                    myChamp = new Katarina();
+                    break;
+                case Champion.Nidalee:
+                    myChamp = new Nidalee();
+                    break;
             }
-            CustomLvlSeq cl = new CustomLvlSeq(menu, AutoWalker.p, Path.Combine(Environment.GetFolderPath(
-            Environment.SpecialFolder.ApplicationData), "AutoBuddy\\Skills"));
+            CustomLvlSeq cl = new CustomLvlSeq(menu, AutoWalker.p, Path.Combine(SandboxConfig.DataDirectory
+            , "AutoBuddy\\Skills"));
             if (!generic)
             {
-                BuildCreator bc = new BuildCreator(menu, Path.Combine(Environment.GetFolderPath(
-                    Environment.SpecialFolder.ApplicationData), "AutoBuddy\\Builds"), myChamp.ShopSequence);
+                BuildCreator bc = new BuildCreator(menu, Path.Combine(SandboxConfig.DataDirectory
+                    , "AutoBuddy\\Builds"), myChamp.ShopSequence);
             }
 
 
@@ -212,16 +232,16 @@ namespace AutoBuddy
                     MainMenu.GetMenu("AB_" + ObjectManager.Player.ChampionName).Get<Label>("shopSequence") != null)
                 {
                     Chat.Print("Autobuddy: Loaded shop plugin for " + ObjectManager.Player.ChampionName);
-                    BuildCreator bc = new BuildCreator(menu, Path.Combine(Environment.GetFolderPath(
-                        Environment.SpecialFolder.ApplicationData), "AutoBuddy\\Builds"),
+                    BuildCreator bc = new BuildCreator(menu, Path.Combine(SandboxConfig.DataDirectory
+                        , "AutoBuddy\\Builds"),
                         MainMenu.GetMenu("AB_" + ObjectManager.Player.ChampionName)
                             .Get<Label>("shopSequence")
                             .DisplayName);
                 }
                 else
                 {
-                    BuildCreator bc = new BuildCreator(menu, Path.Combine(Environment.GetFolderPath(
-                        Environment.SpecialFolder.ApplicationData), "AutoBuddy\\Builds"), myChamp.ShopSequence);
+                    BuildCreator bc = new BuildCreator(menu, Path.Combine(SandboxConfig.DataDirectory
+                        , "AutoBuddy\\Builds"), myChamp.ShopSequence);
                 }
             }
             Logic = new LogicSelector(myChamp, menu);
@@ -237,12 +257,9 @@ namespace AutoBuddy
 
         private static void createFS()
         {
-            //Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(
-            //    Environment.SpecialFolder.ApplicationData), "AutoBuddy"));
-            //Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(
-            //    Environment.SpecialFolder.ApplicationData), "AutoBuddy\\Builds"));
-            //Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(
-            //    Environment.SpecialFolder.ApplicationData), "AutoBuddy\\Skills"));
+            Directory.CreateDirectory(Path.Combine(SandboxConfig.DataDirectory, "AutoBuddy"));
+            Directory.CreateDirectory(Path.Combine(SandboxConfig.DataDirectory, "AutoBuddy\\Builds"));
+            Directory.CreateDirectory(Path.Combine(SandboxConfig.DataDirectory, "AutoBuddy\\Skills"));
         }
     }
 }
